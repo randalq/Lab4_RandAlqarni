@@ -1,0 +1,42 @@
+18 ?- house = house.
+true.
+Explanation: Both terms are identical atomic constants, so a constant unifies with itself
+
+19 ?- house = abc.
+false.
+Explanation: Both are distinct constants (atoms); two plain atoms unify only if they are identical
+
+20 ?- edge(a, b) = edge(C, b).
+C = a.
+Explanation: Both have the same functor 'edge' and arity 2; the second argument 'b' matches identically, and the variable C unifies with 'a'
+
+21 ?- edge(a, d) = edge(C, B).
+C = a,
+B = d.
+Explanation: Both have the same functor and 2 arguments; variable C is instantiated to 'a' and variable B is instantiated to 'd'.
+
+22 ?- edge(C, B) = edge(a, d).
+C = a,
+B = d.
+Explanation: Unification is symmetric; variable C matches atom 'a' and variable B matches atom 'd'.
+
+23 ?- edge(A, f(g, h)) = edge(a, B).
+A = a,
+B = f(g, h).
+Explanation: Variable A unifies with atom 'a', and variable B unifies with the entire compound structure 'f(g, h)'.
+
+24 ?- edge(A, A) = edge(b, c).
+false.
+Explanation: The same variable A must take the same value; it cannot be instantiated to both 'b' and 'c' simultaneously, which are two different constants.
+
+25 ?- edge(A, A) = edge(b, b).
+A = b.
+Explanation: Both argument positions contain the atom 'b', so the variable A consistently unifies with 'b' across both positions.
+
+26 ?- A = B, B = f.
+A = B, B = f.
+Explanation: The first goal links variable A and variable B, and the second instantiates B to 'f'[cite: 9, 12]; since they are linked, A also becomes 'f'.
+
+27 ?- A = B, B = f, A = e.
+false.
+Explanation: Variables A and B are linked and instantiated to 'f'; the final goal requires A (now 'f') to unify with 'e', which fails because 'f' and 'e' are different constants.
